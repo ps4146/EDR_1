@@ -1,5 +1,8 @@
 import argparse
 from ret_dlp import retr
+from create_dlp import creat
+from del_dlp import delet
+from updat_dlp import updat
 parser = argparse.ArgumentParser(description = "Python script that can retrieve, create or delete Deny List Policies as well as update Deny Policy comments.")
 parser.add_argument("option", type = int, help="Select 1 for retrieving, 2 for creating, 3 for deleting or 4 for updating Deny List Policies")
 parser.add_argument("bearer", type = str, help="Please provide Bearer token for authorizing and accessing the EDR API.")
@@ -25,10 +28,10 @@ if arg.auth is None:
 if arg.option == 1:
 	retr(arg.bearer, arg.auth, arg.id, arg.ip, arg.url, arg.domain, arg.md5, arg.sha256, arg.next, arg.limit)
 elif arg.option == 2:
-	pass
+	creat(arg.bearer, arg.auth, arg.body)
 elif arg.option == 3:
-	pass
+	delet(arg.bearer, arg.auth, arg.id)
 elif arg.option == 4:
-	pass
+	updat(arg.bearer, arg.auth, arg.id, arg.body)
 elif arg.option is None:
 	print("Please provide a valid option i.e. 1, 2, 3 or 4")
