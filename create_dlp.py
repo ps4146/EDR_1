@@ -3,17 +3,17 @@ import requests
 from requests.structures import CaseInsensitiveDict
 import json
 
-def creat(bear_token, auth, body):
+def creat(auth, body):
 	f = open(body)
 	data= json.load(f)
 	f.close()
 
-	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list?Authorization="+auth
+	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list"
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/json"
-	headers["Authorization"] = "Bearer " + bear_token
+	headers["Authorization"] = "Bearer " + auth
 
-	resp = requests.post('http://httpbin.org/post', headers = headers, data = data)
+	resp = requests.post(api_url, headers = headers, data = data)
 	print(resp.status_code)
 	print()
 	print(resp.json())
