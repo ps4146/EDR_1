@@ -1,7 +1,9 @@
 import argparse
+from ret_dlp import retr
 parser = argparse.ArgumentParser(description = "Python script that can retrieve, create or delete Deny List Policies as well as update Deny Policy comments.")
 parser.add_argument("option", type = int, help="Select 1 for retrieving, 2 for creating, 3 for deleting or 4 for updating Deny List Policies")
 parser.add_argument("auth", type = str, help="Please provide Authorization token for accessing the EDR API.")
+parser.add_argument("bearer", type = str, help="Please provide Bearer token for authorizing and accessing the EDR API.")
 parser.add_argument("--id", type= str, help="Provide id for either retrieving, updating or deleting Deny List Policy")
 parser.add_argument("--ip", type= str, help="Provide IP address for retrieving Deny List Policy with specific IP address")
 parser.add_argument("--url", type= str, help="Provide URL for retrieving Deny List Policy with specific URL")
@@ -12,13 +14,13 @@ parser.add_argument("--next", type= str, help="Provide the value under \"next\" 
 parser.add_argument("--limit", type= int, help="Provide int value of limit for retrieving Deny List Policy")
 parser.add_argument("--body", type = str, help= "Provide the path to a JSON object required for Creating or Updating Deny List Policies")
 
-args = parser.parse_args()
+arg = parser.parse_args()
 
 if arg.auth is None:
 	print("Please provide the Authorization token for accessing the EDR API.")
 
 if arg.option == 1:
-	pass
+	retr(arg.bearer, arg.auth, arg.id, arg.ip, arg.url, arg.domain, arg.md5, arg.sha256, arg.next, arg.limit)
 elif arg.option == 2:
 	pass
 elif arg.option == 3:
