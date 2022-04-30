@@ -14,6 +14,9 @@ parser.add_argument("--body", type = str, help= "Provide the path to a JSON obje
 
 args = parser.parse_args()
 
+if arg.auth is None:
+	print("Please provide the Authorization token for accessing the EDR API.")
+
 match args.option:
 case 1:
 case 2:
