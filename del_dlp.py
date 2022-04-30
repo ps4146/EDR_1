@@ -1,7 +1,7 @@
 import requests
 from requests.structures import CaseInsensitiveDict
 
-def updat(auth, id):
+def delet(auth, id):
 	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list/{}".format(id)
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/json"
