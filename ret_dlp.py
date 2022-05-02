@@ -11,7 +11,7 @@ def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim):
 		nxt_str=data['next']
 		f.close()
 
-	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list"
+	#api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list"
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = "Bearer " + auth
