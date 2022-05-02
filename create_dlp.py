@@ -3,12 +3,12 @@ import requests
 from requests.structures import CaseInsensitiveDict
 import json
 
-def creat(auth, body):
+def creat(auth, body, api_url):
 	f = open(body)
 	data= json.load(f)
 	f.close()
 
-	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list"
+	#api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list"
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = "Bearer " + auth

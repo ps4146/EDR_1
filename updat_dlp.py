@@ -2,12 +2,13 @@ import requests
 from requests.structures import CaseInsensitiveDict
 import json
 
-def updat(auth, id, body):
+def updat(auth, id, body, api_url):
 	f = open(body)
 	data= json.load(f)
 	f.close()
 
-	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list/{}".format(id)
+#	api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list/{}".format(id)
+	api_url = api_url+ "/{}".format(id)
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = "Bearer " + auth

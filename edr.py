@@ -3,9 +3,10 @@ from ret_dlp import retr
 from create_dlp import creat
 from del_dlp import delet
 from updat_dlp import updat
+from credentials import cred
 parser = argparse.ArgumentParser(description = "Python script that can retrieve, create or delete Deny List Policies as well as update Deny Policy comments.")
 parser.add_argument("option", type = int, help="Select 1 for retrieving, 2 for creating, 3 for deleting or 4 for updating Deny List Policies")
-parser.add_argument("auth", type = str, help="Please provide Authorization token for accessing the EDR API.")
+#parser.add_argument("auth", type = str, help="Please provide Authorization token for accessing the EDR API.")
 parser.add_argument("--id", type= str, help="Provide id for either retrieving, updating or deleting Deny List Policy")
 parser.add_argument("--ip", type= str, help="Provide IP address for retrieving Deny List Policy with specific IP address")
 parser.add_argument("--url", type= str, help="Provide URL for retrieving Deny List Policy with specific URL")
@@ -18,16 +19,24 @@ parser.add_argument("--body", type = str, help= "Provide the path to a JSON obje
 
 arg = parser.parse_args()
 
-if arg.auth is None:
-	print("Please provide the Authorization token for accessing the EDR API.")
+#if arg.auth is None:
+#	print("Please provide the Authorization token for accessing the EDR API.")
+
+# config = configparser.ConfigParser()
+# config.read('config.ini')
+# base_url = config['Symantec EDR']['base-url']
+# client_id = config['Symantec EDR']['client-id']
+# client_secret = config['Symantec EDR']['client-secret']
+
+base_url, auth = cred()
 
 if arg.option == 1:
-	retr(arg.auth, arg.id, arg.ip, arg.url, arg.domain, arg.md5, arg.sha256, arg.next, arg.limit)
+	retr(auth, arg.id, arg.ip, arg.url, arg.domain, arg.md5, arg.sha256, arg.next, arg.limit, base_url)
 elif arg.option == 2:
-	creat(arg.auth, arg.body)
+	creat(auth, arg.body, base_url)
 elif arg.option == 3:
-	delet(arg.auth, arg.id)
+	delet(auth, arg.id, base_url)
 elif arg.option == 4:
-	updat(arg.auth, arg.id, arg.body)
+	updat(auth, arg.id, arg.body, base_url)
 elif arg.option is None:
 	print("Please provide a valid option i.e. 1, 2, 3 or 4")
