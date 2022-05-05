@@ -3,7 +3,7 @@ import requests
 from requests.structures import CaseInsensitiveDict
 import json
 
-def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim):
+def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim, api_url):
 	nxt_str = ""
 	if nxt is not None:
 		f = open(nxt)
@@ -12,6 +12,7 @@ def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim):
 		f.close()
 
 	#api_url = "https://192.168.1.15/atpapi/v2/policies/deny_list"
+	api_url = api_url + "/atpapi/v2/policies/deny_list"
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = "Bearer " + auth
@@ -35,10 +36,10 @@ def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim):
 
 	api_url = api_url.replace("&","?",1)
 
-	resp = requests.post(api_url, headers=headers)
+	resp = requests.get(api_url, headers=headers)
 	print(resp.status_code)
 	print()
 	print(resp.json())
-	nxt_1 = resp.json()['next']
-	with open(nxt_1, 'w') as f1:
-		json.dump(resp.json(), f1)
+	# nxt_1 = resp.json()['next']
+	# with open(nxt_1, 'w') as f1:
+	# 	json.dump(resp.json(), f1)
