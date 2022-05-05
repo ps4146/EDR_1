@@ -28,3 +28,4 @@ def cred():
 		return base_url, auth
 	else:
 		print("Authorization request failed.")
+		return base_url, -1

@@ -30,8 +30,9 @@ arg = parser.parse_args()
 # client_secret = config['Symantec EDR']['client-secret']
 
 base_url, auth = cred()
-
-if arg.option == 1:
+if auth == -1:
+	pass
+elif arg.option == 1:
 	retr(auth, arg.id, arg.ip, arg.url, arg.domain, arg.md5, arg.sha256, arg.next, arg.limit, base_url)
 elif arg.option == 2:
 	creat(auth, arg.ip, arg.domain, arg.url, arg.md5, arg.sha256, arg.comment, base_url)
