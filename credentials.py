@@ -1,6 +1,8 @@
 import configparser
 import base64
 import json
+import requests
+from requests.structures import CaseInsensitiveDict
 
 def cred():
 	config = configparser.ConfigParser()
@@ -10,14 +12,19 @@ def cred():
 	client_secret = config['Symantec EDR']['client-secret']
 
 	user_pass = client_id+":"+client_secret
-	user_pass = user_pass.encode('utf-8')
-	pass2 = base64.base64encode(pass1)
+	pass1 = user_pass.encode('utf-8')
+	pass2 = base64.b64encode(pass1)
 
-	api_url = base_url+"?grant_type=client_credentials&scope=customer"
+	api_url = base_url+"/atpapi/oauth2/tokens?grant_type=client_credentials&scope=customer"
 	headers = CaseInsensitiveDict()
 	headers["Content-Type"] = "application/x-www-form-urlencoded"
-	headers["Authorization"] = "Basic "+pass2
+	headers["Authorization"] = "Basic "+pass2.decode()
+	headers["Accept"] = "application/json"
 
 	resp = requests.post(api_url, headers=headers)
-	auth = resp.json()['token']['access_token']
-	return base_url, auth
+	print(resp.status_code)
+	if resp.ok:
+		auth = resp.json()['token']['access_token']
+		return base_url, auth
+	else:
+		print("Authorization request failed.")
