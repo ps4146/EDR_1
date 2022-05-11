@@ -24,7 +24,7 @@ def cred():
 	resp = requests.post(api_url, headers=headers, verify=False)
 	print(resp.status_code)
 	if resp.ok:
-		auth = resp.json()['token']['access_token']
+		auth = resp.json()['access_token']
 		return base_url, auth
 	else:
 		print("Authorization request failed.")
