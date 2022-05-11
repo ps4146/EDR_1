@@ -29,7 +29,7 @@ def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim, api_url):
 		api_url= api_url+"&md5="+md5
 	if sha256 is not None:
 		api_url= api_url+"&sha256="+sha256
-	if nxt_str is not "":
+	if nxt_str != "":
 		api_url= api_url+"&next="+nxt_str
 	if lim is not None:
 		api_url= api_url+"&limit="+lim
