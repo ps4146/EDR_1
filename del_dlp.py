@@ -12,7 +12,7 @@ def delet(auth, id, api_url):
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = "Bearer " + auth
 
-	resp = requests.delete(api_url, headers = headers)
+	resp = requests.delete(api_url, headers = headers, verify=false)
 	print(resp.status_code)
 	print()
 	try:

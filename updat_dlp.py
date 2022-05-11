@@ -17,7 +17,7 @@ def updat(auth, id, comm, api_url):
 	headers["Authorization"] = "Bearer " + auth
 	data = {"op":"replace","path":"/comment","value":comm}
 
-	resp = requests.patch(api_url, headers = headers, data = data)
+	resp = requests.patch(api_url, headers = headers, data = data, verify=false)
 	print(resp.status_code)
 	print()
 	try:

@@ -36,7 +36,7 @@ def retr(auth, id, ip, url, dom, md5, sha256, nxt, lim, api_url):
 
 	api_url = api_url.replace("&","?",1)
 
-	resp = requests.get(api_url, headers=headers)
+	resp = requests.get(api_url, headers=headers, verify = false)
 	print(resp.status_code)
 	print()
 	print(resp.json())
