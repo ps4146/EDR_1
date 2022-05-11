@@ -33,7 +33,7 @@ def creat(auth, ip, domain, url, md5, sha256, comm, api_url):
 	headers["Content-Type"] = "application/json"
 	headers["Authorization"] = "Bearer " + auth
 
-	resp = requests.post(api_url, headers = headers, data = data, verify = False)
+	resp = requests.post(api_url, headers = headers, json = data, verify = False)
 	print(resp.status_code)
 	print()
 	print(resp.json())
