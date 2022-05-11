@@ -15,7 +15,7 @@ parser.add_argument("--md5", type= str, help="Provide md5 value for retrieving o
 parser.add_argument("--sha256", type= str, help="Provide sha256 value for retrieving or creating Deny List Policy with specific sha256 value")
 parser.add_argument("--next", type= str, help="Provide the path to a response JSON to retrieve next set of Deny list Policies")
 parser.add_argument("--limit", type= int, help="Provide int value of limit for retrieving Deny List Policy")
-parser.add_argument("--comment", type= int, help="Provide a comment for creating or updating Deny List Policies")
+parser.add_argument("--comment", type= str, help="Provide a comment for creating or updating Deny List Policies")
 # parser.add_argument("--body", type = str, help= "Provide the path to a JSON object required for Creating or Updating Deny List Policies")
 
 arg = parser.parse_args()
